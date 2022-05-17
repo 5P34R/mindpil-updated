@@ -21,7 +21,7 @@ const LoginScreen = ({navigation}) => {
           const user = userCreds.user;
           console.log(user)
           if(user){
-            navigation.navigate('Dashboard')
+            navigation.navigate('Home')
           }
         })
         .catch(err => alert(err.message))

@@ -5,8 +5,6 @@ import { NativeBaseProvider } from 'native-base'
 import CustomNavigation from './Navigation';
 
 
-
-
 export default function App() {
   return (
     <NativeBaseProvider>

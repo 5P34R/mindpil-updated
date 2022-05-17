@@ -1,5 +1,5 @@
 import React from "react";
-import { Box,Heading, HStack, Avatar, Pressable } from 'native-base'
+import { Box,Heading, HStack, Avatar, Pressable, VStack } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -20,7 +20,9 @@ const Home = ({ navigation }) => {
                 </Avatar>
             </HStack>
             
-                
+                <VStack>
+                    
+                </VStack>
             
         </Box>
         

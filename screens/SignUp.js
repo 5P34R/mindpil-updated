@@ -15,19 +15,29 @@ const SignUp = ({navigation}) => {
     const handleClick = () => setShow(!show);
 
     const submitHandle = ()=> {
+      if(!email && !password && !password1){
+        alert("All fields are mandatory")
+      }
+      else{
         if(password === password1){
             auth
             .createUserWithEmailAndPassword(email, password)
             .then(userCreds => {
               const user = userCreds.user;
-              console.log(user.email)
+              // alert(user.uid)
+              setEmail("")
+              setPassword("")
+              setPassword1("")
+              navigation.navigate("Personal", {
+                userData: user
+              })
             })
             .catch(err => alert(err.message))
         }else{
             alert("Password doesn't match.")
         }
-
     }
+      }
 
     return(
         <NativeBaseProvider>

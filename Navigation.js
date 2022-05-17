@@ -10,6 +10,9 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import Home from './screens/Home';
 import SignUp from './screens/SignUp';
 import LoginScreen from './screens/Login';
+import CustomDrawer from './components/CustomDrawer';
+import PersonalDetails from './screens/PersonalDetails';
+import QuizScreen from './screens/Quiz';
 
 function SettingsScreen() {
   return (
@@ -25,7 +28,7 @@ const Tab = createBottomTabNavigator();
 
 function HomeDrawerScreen() {
   return (
-    <HomeStack.Navigator initialRouteName="Login" screenOptions={{headerShown:false}}>
+    <HomeStack.Navigator drawerContent={props => <CustomDrawer {...props} />} initialRouteName="Login" screenOptions={{headerShown:false}}>
       <HomeStack.Screen
         name="Home"
         component={Home}
@@ -45,6 +48,20 @@ function HomeDrawerScreen() {
         name="Login"
         component={LoginScreen}
         options={{ tabBarLabel: 'Login',
+        drawerIcon: () => <SimpleLineIcons name="login" size={24} color="black" />
+      }}
+      />
+      <HomeStack.Screen
+        name="Personal"
+        component={PersonalDetails}
+        options={{ tabBarLabel: 'Personal',
+        drawerIcon: () => <SimpleLineIcons name="login" size={24} color="black" />
+      }}
+      />
+      <HomeStack.Screen
+        name="Quiz"
+        component={QuizScreen}
+        options={{ tabBarLabel: 'Quiz',
         drawerIcon: () => <SimpleLineIcons name="login" size={24} color="black" />
       }}
       />
