@@ -27,7 +27,7 @@ const PersonalDetails = ({ navigation, route }) => {
             age_catagory: service
         }).then(res => alert("Added"))
         .catch(err => console.log(err))
-        navigation.navigate("Home")
+        navigation.navigate("Quiz")
     }
 
     console.log(route.params.userData.uid)

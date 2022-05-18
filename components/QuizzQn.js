@@ -29,7 +29,6 @@ const QuizzQn = (props) => {
                             <Box p={4} rounded="lg" bg="gray.200" px={20}>D</Box>
                     </VStack>
                 </Center> 
-                
             </VStack>
     )
 }

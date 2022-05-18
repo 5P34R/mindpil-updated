@@ -36,13 +36,16 @@ const QuizScreen = () => {
                 </Center>
             </Box>
             <Spacer />
-            <ScrollView>
+            <ScrollView maxHeight="2/3">
             {
                 qA.map( e => 
                     <QuizzQn question={e.question} answers={e.answers}/>
                 )
             }
             </ScrollView>
+            <Center>
+                <Button mb={30} px={20} bg="indigo.400">Submit</Button>
+            </Center>
             
         </Box>
         
