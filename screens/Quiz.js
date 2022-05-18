@@ -1,7 +1,33 @@
-import React from 'react'
-import { Box, Center, Heading, Spacer, VStack } from 'native-base'
+import React, { useState, useEffect } from 'react'
+import { Box, Button, Center, Heading, Spacer, ScrollView } from 'native-base'
+import { fdb } from '../firebase'
+import QuizzQn from '../components/QuizzQn'
 
 const QuizScreen = () => {
+    const [qA, setQA] = useState([])
+
+
+    useEffect(() => {
+        getData()
+    },[])
+    
+    const getData = async () => {
+        await fdb.collection("questions").get()
+        .then(result => result.docs)
+        .then(docs => docs.map( doc => ({
+            question: doc.data().question,
+            answers: doc.data().answers
+        })))
+        .then(obj => setQA(obj))
+        console.log("called")
+        // data = qA
+        qA.map( e => 
+            console.log(e.answers)
+        )
+    }
+    
+    
+
     return (
         <Box>
             <Box  bg="indigo.400" p="12" rounded="lg">
@@ -10,18 +36,14 @@ const QuizScreen = () => {
                 </Center>
             </Box>
             <Spacer />
-            <VStack>
-                <Center p="20">
-                    <Heading>Questions 1</Heading>
-                    <VStack mt={10} space={6}>
-                        <Box p={4} rounded="lg" bg="gray.200" px={20}>A</Box>
-                        <Box p={4} rounded="lg" bg="gray.200" px={20}>B</Box>
-                        <Box p={4} rounded="lg" bg="gray.200" px={20}>C</Box>
-                        <Box p={4} rounded="lg" bg="gray.200" px={20}>D</Box>
-                    </VStack>
-                </Center>
-                
-            </VStack>
+            <ScrollView>
+            {
+                qA.map( e => 
+                    <QuizzQn question={e.question} answers={e.answers}/>
+                )
+            }
+            </ScrollView>
+            
         </Box>
         
     )

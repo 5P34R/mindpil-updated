@@ -13,14 +13,7 @@ import LoginScreen from './screens/Login';
 import CustomDrawer from './components/CustomDrawer';
 import PersonalDetails from './screens/PersonalDetails';
 import QuizScreen from './screens/Quiz';
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  } 
+import settingScreen from './screens/Settings';
 
   
 const HomeStack = createDrawerNavigator();
@@ -96,7 +89,7 @@ const CustomNavigation = () => {
         })}
       >
         <Tab.Screen name="Home" component={HomeDrawerScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Settings" component={settingScreen} />
       </Tab.Navigator>
     </NavigationContainer>
     )
