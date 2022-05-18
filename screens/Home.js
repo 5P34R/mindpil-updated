@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
                 <VStack>
                     
                 </VStack>
-            
+
         </Box>
         
     )

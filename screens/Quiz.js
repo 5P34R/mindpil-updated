@@ -3,7 +3,7 @@ import { Box, Button, Center, Heading, Spacer, ScrollView } from 'native-base'
 import { fdb } from '../firebase'
 import QuizzQn from '../components/QuizzQn'
 
-const QuizScreen = () => {
+const QuizScreen = ({navigation}) => {
     const [qA, setQA] = useState([])
 
 
@@ -48,7 +48,6 @@ const QuizScreen = () => {
             </Center>
             
         </Box>
-        
     )
 }
 

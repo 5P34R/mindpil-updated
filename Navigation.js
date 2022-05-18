@@ -14,6 +14,7 @@ import CustomDrawer from './components/CustomDrawer';
 import PersonalDetails from './screens/PersonalDetails';
 import QuizScreen from './screens/Quiz';
 import settingScreen from './screens/Settings';
+import Tasks from './screens/Tasks';
 
   
 const HomeStack = createDrawerNavigator();
@@ -55,6 +56,13 @@ function HomeDrawerScreen() {
         name="Quiz"
         component={QuizScreen}
         options={{ tabBarLabel: 'Quiz',
+        drawerIcon: () => <SimpleLineIcons name="login" size={24} color="black" />
+      }}
+      />
+      <HomeStack.Screen
+        name="Tasks"
+        component={Tasks}
+        options={{ tabBarLabel: 'Tasks',
         drawerIcon: () => <SimpleLineIcons name="login" size={24} color="black" />
       }}
       />

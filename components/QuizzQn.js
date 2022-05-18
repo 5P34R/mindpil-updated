@@ -3,6 +3,7 @@ import { VStack, Center, Button, Heading, Box } from 'native-base'
 
 const QuizzQn = (props) => {
     
+    const [data, setData] = useState({})
     // const data = { 
     //     questions: props.question,
     //     answers : { 
@@ -10,23 +11,21 @@ const QuizzQn = (props) => {
     //         key:  Object.keys(props.answers)
     //     }
     // }
-    // console.log(props.answers)
+    // Object.keys(props.answers).map(e => console.log(e))
+    // data.forEach(e => console.log(e))
+    // console.log(data)
     // Object.keys(props.answers).forEach(e => console.log(e))
+    
     return (
         <VStack>
-                      
                 <Center p="20">
                        <Heading size="md">{props.question}</Heading>
                     <VStack mt={10} space={6}>
                         {
-                            Object.keys(props.answers).forEach(e => 
-                                <Box p={4} rounded="lg" bg="gray.200" px={20}>{e}</Box>
+                            Object.keys(props.answers).map(e => 
+                                <Button p={4} rounded="lg" bg="gray.200" px={20}><Heading size="sm">{e}</Heading></Button>
                             )
                         }
-
-                            <Box p={4} rounded="lg" bg="gray.200" px={20}>B</Box>
-                            <Box p={4} rounded="lg" bg="gray.200" px={20}>C</Box>
-                            <Box p={4} rounded="lg" bg="gray.200" px={20}>D</Box>
                     </VStack>
                 </Center> 
             </VStack>
