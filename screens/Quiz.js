@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Button, Center, Heading, Spacer, ScrollView } from 'native-base'
+import { Box, Center, Heading, Spacer, ScrollView } from 'native-base'
 import { fdb } from '../firebase'
 import QuizzQn from '../components/QuizzQn'
+import axios from 'axios'
 
-const QuizScreen = ({navigation}) => {
+const QuizScreen = ({ navigation }) => {
+    
     const [qA, setQA] = useState([])
-
+    const [i, setI] = useState(0)
 
     useEffect(() => {
         getData()
     },[])
+
     
     const getData = async () => {
         await fdb.collection("questions").get()
@@ -19,14 +22,32 @@ const QuizScreen = ({navigation}) => {
             answers: doc.data().answers
         })))
         .then(obj => setQA(obj))
-        console.log("called")
         // data = qA
-        qA.map( e => 
-            console.log(e.answers)
-        )
+        // qA.map( e => 
+        //     console.log(e.answers)
+        // )
     }
     
-    
+    const sendData = async (qn, an) => {
+        await axios.post("https://mindpill-fastapi.herokuapp.com/data", {
+            question:  qn,
+            answer : an
+        })
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
+    }
+
+    const answerHandler = (qn, e) => {
+        console.log("clicked from parent")
+        setI((prev) => (prev+1)%8)
+        console.log(i)
+        console.log(qn, e)
+        sendData(qn, e)
+        if(i === 7){
+            navigation.navigate("Home")
+            setI(0)
+        }
+    }
 
     return (
         <Box>
@@ -35,17 +56,17 @@ const QuizScreen = ({navigation}) => {
                     <Heading color="white">Take Quiz</Heading>
                 </Center>
             </Box>
+
             <Spacer />
-            <ScrollView maxHeight="2/3">
+           <Center>
+            <Heading>Question {i}</Heading>
+           </Center>
+            <ScrollView>
             {
-                qA.map( e => 
-                    <QuizzQn question={e.question} answers={e.answers}/>
-                )
+                // console.log(qA[i])
+                    <QuizzQn question={qA[i]?.question} answers={qA[i]?.answers} key={i} answerHandler={answerHandler}/>
             }
             </ScrollView>
-            <Center>
-                <Button mb={30} px={20} bg="indigo.400">Submit</Button>
-            </Center>
             
         </Box>
     )
