@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import {Box, Center, Heading, HStack, VStack, Modal, FormControl, Input, Button, Pressable  } from 'native-base'
+import {Text, Box, Center, Heading, HStack, VStack, Modal, FormControl, Input, Button, Pressable  } from 'native-base'
 import {Ionicons} from '@expo/vector-icons'
 
 const Tasks = ({ navigation }) => {
@@ -22,10 +22,16 @@ const Tasks = ({ navigation }) => {
             <VStack space={10}>
                 <Center>
                     <HStack space={2}>
-                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}>A</Button>
-                            <Button p={10} bg="gray.200" rounded={10}>A</Button>
-                            <Button p={10} bg="gray.200" rounded={10}>A</Button>
-                            <Button p={10} bg="gray.200" rounded={10}>A</Button>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 1</Text></Button>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 2</Text></Button>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 3</Text></Button>
+                            
+                    </HStack>
+                    <HStack py={4} space={2}>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 4</Text></Button>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 5</Text></Button>
+                            <Button p={10} bg="gray.200" rounded={10}  onPress={() => setShowModal(true)}><Text>Task 6</Text></Button>
+
                     </HStack>
                 </Center>
             </VStack>
@@ -34,16 +40,10 @@ const Tasks = ({ navigation }) => {
             <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
-          <Modal.Header>Contact Us</Modal.Header>
+          <Modal.Header>Tasks</Modal.Header>
           <Modal.Body>
-            <FormControl>
-              <FormControl.Label>Name</FormControl.Label>
-              <Input />
-            </FormControl>
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
+          Put thoughts on trial: Choose a thought that has contributed to your anxiety. Gather evidence in support of your thought (verifiable facts only), and against your thought. Compare the evidence and determine whether your thought is accurate or not.
+            
           </Modal.Body>
           <Modal.Footer>
             <Button.Group space={2}>
@@ -55,7 +55,7 @@ const Tasks = ({ navigation }) => {
               <Button onPress={() => {
               setShowModal(false);
             }}>
-                Save
+                Done
               </Button>
             </Button.Group>
           </Modal.Footer>

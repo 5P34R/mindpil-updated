@@ -1,10 +1,11 @@
 import React from "react";
-import { Box,Heading, HStack, Avatar, Pressable, VStack } from 'native-base'
+import {Text, Box,Heading, HStack, Avatar, Pressable, VStack, Progress, Center, Button } from 'native-base'
 import { Ionicons } from '@expo/vector-icons';
 
 
 const Home = ({ navigation }) => {
     return (
+        <>
         <Box safeArea bg="indigo.400" p="6" rounded="xl">
             <HStack space="3" justifyContent="space-between">
                 <Pressable onPress={() => navigation.toggleDrawer()}>
@@ -19,13 +20,21 @@ const Home = ({ navigation }) => {
                     SS
                 </Avatar>
             </HStack>
-            
-                <VStack>
-                    
-                </VStack>
-
         </Box>
-        
+                <VStack mt={18} >
+                    <Box mt={8} p={8} bg="gray.200" shadow={8} rounded="md">
+                        <Text>We recognise Social Isolation</Text>
+                    </Box>
+                   <Box mt={8} p={8} bg="gray.200" shadow={8} rounded="md">
+                    <Heading my={2}>Your Progress</Heading>
+                    <Progress value={45}  />
+                   </Box>
+                   
+                   <Center mt={10}>
+                    <Button onPress={() => navigation.navigate("Tasks")}>Go To Tasks</Button>
+                   </Center>
+                </VStack>
+        </>
     )
 }
 
