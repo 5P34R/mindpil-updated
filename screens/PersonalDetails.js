@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Box, HStack, Pressable, Heading, Select, CheckIcon, Spacer, VStack, FormControl, Input, Button } from 'native-base'
+import { Box, HStack, Pressable, Heading, Select, CheckIcon, Spacer, VStack, FormControl, Input, Button, AlertDialog, Center } from 'native-base'
 import {Ionicons} from '@expo/vector-icons'
 
 import { fdb } from '../firebase'
@@ -11,24 +11,37 @@ const PersonalDetails = ({ navigation, route }) => {
     const [service, setService] = useState("");
     const [fname, setFname] = useState("")
     const [Lname, setLname] = useState("")
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onClose = () => setIsOpen(false);
+
+    const cancelRef = React.useRef(null);
 
     const submitHandler = () => {
         console.log(fname)
         console.log(Lname)
         console.log(service)
         sendData()
+
+
+
         // console.log("clicked")
     }
 
+
     const sendData = () => {
-        fdb.collection('userdetails').doc(uid).set({
-            first_name: fname,
-            last_name: Lname,
-            age_catagory: service
-        }).then(res => alert("Added"))
-        .catch(err => console.log(err))
-        navigation.navigate("Quiz")
-    }
+            fdb.collection('userdetails').doc(uid).set({
+                first_name: fname,
+                last_name: Lname,
+                age_catagory: service
+            }).then(res => {
+                setIsOpen(!isOpen)
+            })
+            .catch(err => console.log(err))
+        }
+        
+        
+    
 
     console.log(route.params.userData.uid)
     return (
@@ -75,6 +88,27 @@ const PersonalDetails = ({ navigation, route }) => {
                   Proceed
                 </Button>
             </VStack>
+
+            <Center>
+            <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton />
+          <AlertDialog.Header>Added</AlertDialog.Header>
+          <AlertDialog.Footer>
+            <Center>
+            <Button.Group space={2}>
+              <Button variant="unstyled" colorScheme="coolGray" onPress={() => {
+                onClose()
+                navigation.navigate("Quiz")
+                }} ref={cancelRef}>
+                Ok
+              </Button>
+            </Button.Group>
+            </Center>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
+            </Center>
             
         </Box>
         

@@ -63,7 +63,6 @@ const QuizScreen = ({ navigation }) => {
            </Center>
             <ScrollView>
             {
-                // console.log(qA[i])
                     <QuizzQn question={qA[i]?.question} answers={qA[i]?.answers} key={i} answerHandler={answerHandler}/>
             }
             </ScrollView>
