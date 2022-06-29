@@ -63,7 +63,7 @@ const QuizScreen = ({ navigation }) => {
            </Center>
             <ScrollView>
             {
-                    <QuizzQn question={qA[i]?.question} answers={qA[i]?.answers} key={i} answerHandler={answerHandler}/>
+                     <QuizzQn question={qA[i]?.question} answers={qA[i]?.answers} key={i} answerHandler={answerHandler}/>
             }
             </ScrollView>
             
